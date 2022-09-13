@@ -1,46 +1,47 @@
 [toc]
 ## 移动端基础知识
+【关于移动端适配方案单独出一篇文章】
 
-1. app基础知识
-   webapp 不算真正的app，属于混合开发中的h5页面部分。
-   混合开发是当前主流app开发技术，h5+ios  前端比较流行，需求量大，ios
+1. `app`基础知识
+   `webapp` 不算真正的`app`，属于混合开发中的h5页面部分。
+   混合开发是当前主流`app`开发技术，`h5+ios`  前端比较流行，需求量大，`ios`
 2. 技术栈
-   nodejs平台
-   react全家桶  17.0.2   18.2.0
-   redux react-redux react-thunk
-   react-router-dom v5
-   styled-components   css-in-js技术
-   Ant Design Mobile  5.19.0 新版本
-   immutable redux-immutable  不可变值的依赖包
-   axios  请求
+   `nodejs`平台
+   `react`全家桶  `17.0.2`   `18.2.0`
+   `redux` `react-redux` `react-thunk`
+   `react-router-dom` `v5`
+   `styled-components`   `css-in-js`技术
+   `Ant Design Mobile`  `5.19.0` 新版本
+   `immutable` `redux-immutable`  不可变值的依赖包
+   `axios`  请求
 3. 项目初始化
-    create-react-app myreact 创建项目
+    `create-react-app myreact` 创建项目
     清理项目目录
     装包
-4. meta
+4. 适配的前奏`meta`
     默认的视口的配置
     `<meta name="viewport" content="width=device-width, initial-scale=1" />`
-    　通过meta标签进行设置，name属性指定viewport值，content属性进行视口配置
-    　　`<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />`
-    　　取值：
-    　　　　width 　　　　            设置layout viewport宽度的特定值，device-width表示设备宽。
-    　　　　height 　　　　　　        设置layout viewport高度特定值，一般不进行设置。
-    　　　　initial-scale 　　　　 　　设置页面的初始缩放
-    　　　　minimum-scale 　　　　　　 设置页面的最小缩放
-    　　　　maximum-scale 　　　　 　　设置页面的最大缩放
-    　　　　user-scalable 　　　　 　　设置页面能否进行缩放
+    通过meta标签进行设置，name属性指定viewport值，content属性进行视口配置
+    `<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />`
+    取值：
+    `width` 　　　　            设置`layout viewport`宽度的特定值，`device-width`表示设备宽。
+    `height` 　　　　　　        设置`layout viewport`高度特定值，一般不进行设置。
+    `initial-scale` 　　　　 　　设置页面的初始缩放
+    `minimum-scale` 　　　　　　 设置页面的最小缩放
+    `maximum-scale` 　　　　 　　设置页面的最大缩放
+    `user-scalable` 　　　　 　　设置页面能否进行缩放
 5. 适配
     淘宝提供插件适配
     网易
-    rem 相对单位来做移动端的视频 跟标签中设置font-size 所有的子标签就可以参照他进行缩放比例
-      例如： html{ font-size:100px}     200px--- 2rem   14px--.14rem   30px--.3rem
-    设计稿一般750px  我们是需要根据dpr，dpr是设备像素比，苹果6来参考，dpr=2  设计稿是750 所以我们实际宽度是375.    苹果9以下包含苹果9都是dpr=2  其他都是dpr=3
-    bug问题：
-      比如：dpr = 2  我们书写1px 他的实际是多少宽度？ 2px  引申的经典面试题，移动端1px问题咋解决？？？
-           dpr = 3  书写1px 实际的宽度 3px 解决：缩放他的dpr的倍数就可以了。
-6. antd 按需引入
-    安装 npm install --save antd-mobile
-    在package.json中添加如下代码：
+    `rem` 相对单位来做移动端的视频 跟标签中设置font-size 所有的子标签就可以参照他进行缩放比例
+      例如： `html{ font-size:100px}`     `200px--- 2rem`   `14px--.14rem`  `30px--.3rem`
+    设计稿一般`750px`  我们是需要根据`dpr`，`dpr`是设备像素比，苹果6来参考，`dpr=2`  设计稿是750 所以我们实际宽度是375    苹果9以下包含苹果9都是`dpr=2`  其他都是`dpr=3`
+    `bug`问题：
+      比如：`dpr = 2`  我们书写1px 他的实际是多少宽度？ 2px  引申的经典面试题，移动端1px问题咋解决？？？
+           `dpr = 3`  书写1px 实际的宽度 3px 解决：缩放他的dpr的倍数就可以了。
+6. `antd-mobile` 按需引入
+    安装 `npm install --save antd-mobile`
+    在`package.json`中添加如下代码：
     ```json
     "babel":{
         "plugins": [
@@ -58,13 +59,13 @@
 
 ## 项目初始化
 
-1. 在本机磁盘中指定位置创建一下react项目，命令如下
+1. 在本机磁盘中指定位置创建一下`react`项目，命令如下
 `create-react-app cookbook`
 
 2. 清理创建好的项目中不需要的文件及文件夹
-- 删除public目录下的部分内容
+- 删除`public`目录下的部分内容
   - 文件：只保留favicon.ico图标和index.html文件
-  - 进入public/index.html文件，**清除**如下代码即可
+  - 进入public/index.html文件，**清除**如下代码即可【有viewport的meta标签一定要保留，网易适配必需要有】
 
 ```html
 <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
@@ -87,7 +88,7 @@ root.render(
     <App />
 )
 ```
-  - 进入src/App.js文件，可以使用rcc快捷键重新生成代码（vscode），或者复制粘贴如下代码
+  - 进入`src/App.js`文件，可以使用`rcc`快捷键重新生成代码（`vscode`），或者复制粘贴如下代码
 ```javascript
 import React, { Component } from 'react'
 
@@ -114,7 +115,7 @@ export default App
 
 4. 配置装饰器支持
 
-> 修改package.json文件中scripts命令
+> 修改`package.json`文件中`scripts`命令
 
 ```json
 "scripts": {
@@ -125,7 +126,7 @@ export default App
 }
 ```
 
-> 在当前项目根目录下面创建一个名称为config-overrides.js文件，对webpack进行配置，此文件可以理解为就是webpack.config.js的扩展文件
+> 在当前项目根目录下面创建一个名称为`config-overrides.js`文件，对`webpack`进行配置，此文件可以理解为就是`webpack.config.js`的扩展文件
 
 ```javascript
 // 在当前项目根目录下面创建一个名称为config-overrides.js文件，对webpack进行配置
@@ -144,7 +145,7 @@ module.exports = override(
 
 > 我们还需要解决对装饰器的实验支持功能在将来版本可能更改所出现的一个警告问题
 ==bug:==
-对装饰器的实验支持功能在将来的版本中可能更改。在 "tsconfig" 或 "jsconfig" 中设置 "experimentalDecorators" 选项以删除此警告。ts(1219)(https://www.cnblogs.com/Annely/p/14613567.html)
+对装饰器的实验支持功能在将来的版本中可能更改。`在 "tsconfig" 或 "jsconfig" 中设置 "experimentalDecorators" 选项以删除此警告`。ts(1219)(https://www.cnblogs.com/Annely/p/14613567.html)
 **注意：@babel/plugin-proposal-decorators装饰器安装有坑**
 
 链接：https://www.jianshu.com/p/7c62029d44f9
@@ -168,7 +169,7 @@ module.exports = {
 
 5. 配置反向代理
 
-> 在src目录下创建一个名称为setupProxy.js文件，提前为后续接口设置反向代理
+> 在`src`目录下创建一个名称为`setupProxy.js`文件，提前为后续接口设置反向代理
 
 ```javascript
 // 在src目录下创建一个名称为setupProxy.js文件，提前为后续接口设置反向代理
@@ -189,7 +190,7 @@ module.exports = app => {
 
 ## 样式初始化
 
-1. 在src目录下创建一个assets文件夹(用来存放静态资源文件)->创建reset.css文件
+1. 在`src`目录下创建一个`assets`文件夹(用来存放静态资源文件)->创建`reset.css`文件
 
 2. 网上百度拷贝一份拿来用即可，代码如下【注意把`font-size: 12px;`替换为`font-size: 100px;`为移动端做准备】：
 
@@ -497,7 +498,7 @@ class CookBook extends Component {
 export default CookBook
 ```
 
-1. 配置一下App.css（在项目根目录创建），项目全局样式，body元素没有高度，设置100%
+1. 配置一下`App.css`（在项目根目录创建），项目全局样式，`body`元素没有高度，设置100%
 
 ```css
 /* 项目的全局样式写在这里 */
@@ -506,10 +507,10 @@ body,#root{
 }
 ```
 
-引入到App.js根组件中，作为全局样式
+引入到`App.js`根组件中，作为全局样式
 
 
-4. 使用样式组件，来书写css调整tab-bar位置[CSS-in-JS，在cookbook文件夹下创建StyledCook.js文件注意是js文件，来写css样式]
+4. 使用样式组件，来书写`css`调整`tab-bar`位置[CSS-in-JS，在cookbook文件夹下创建StyledCook.js文件注意是js文件，来写css样式]
 
 ```js
 // 引入styled
@@ -536,7 +537,7 @@ export const TabbarStyled = styled.div`
 `
 ```
 
-注意在CookBook.jsx引入样式组件，当成标签替换对应标签使用即可
+注意在`CookBook.jsx`引入样式组件，当成标签替换对应标签使用即可
 `import { StyledCook, StyledTab, TabbarStyled } from './StyledCook'`
 
 完整CookBook组件代码如下：
@@ -628,9 +629,9 @@ class CookBook extends Component {
 export default CookBook
 ```
 
-5. 开始书写home页样式，在home文件夹下创建一个StyledHome.js样式文件，用来写它和它子组件的样式
+5. 开始书写`home`页样式，在`home`文件夹下创建一个`StyledHome.js`样式文件，用来写它和它子组件的样式
 
-引入到Header.jsx使用即可
+引入到`Header.jsx`使用即可
 
 完整样式代码如下：
 ```js
@@ -651,7 +652,7 @@ export const MyHeader = styled.div`
 
 6. 轮播图组件书写
 
-在Swiper.jsx走马灯组件中书写该组件，到ant design取走马灯拿过来使用
+在`Swiper.jsx`走马灯组件中书写该组件，到`ant design`取走马灯拿过来使用
 
 ```jsx
 import React, { Component } from 'react'
